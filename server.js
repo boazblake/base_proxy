@@ -18,10 +18,11 @@ const connectToDB = require('./config/db-setup.js').connectToDB
 
 // Import Routers
 let authRouter = require('./routes/authRouter.js')
-let apiRouter = require('./routes/apiRouter.js')
+let userRouter = require('./routes/userRouter.js')
+let itemRouter = require('./routes/itemRouter.js')
 
 // Load DB User Model (for appAuthentication configuration)
-let User = require('./db/schema.js').User
+let User = require('./db/userSchema.js')
 
 
 // =========
@@ -64,7 +65,8 @@ app.use(function(req, res, next) {
 });
 
 app.use( '/auth', authRouter )
-app.use( '/api', apiRouter )
+app.use( '/item', itemRouter )
+app.use( '/user', userRouter )
 
 app.use(appMiddleWare.errorHandler);
 

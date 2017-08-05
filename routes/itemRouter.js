@@ -1,26 +1,26 @@
 let Router = require('express').Router;
-const apiRouter = Router()
+const itemRouter = Router()
 let helpers = require('../config/helpers.js')
 
-let User = require('../db/schema.js').User
+let Item = require('../db/itemSchema.js')
 
 
-  apiRouter
-    .get('/users', function(req, res){
+  itemRouter
+    .get('/items', function(req, res){
       User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err)
         res.json(results)
       })
     })
 
-  apiRouter
-    .get('/users/:_id', function(req, res){
+  itemRouter
+    .get('/items/:_id', function(req, res){
       User.findById(req.params._id, "-password", function(err, record){
         if(err || !record ) return res.json(err)
         res.json(record)
       })
     })
-    .put('/users/:_id', function(req, res){
+    .put('/items/:_id', function(req, res){
 
       User.findByIdAndUpdate(req.params._id, req.body, function(err, record){
           if (err) {
@@ -34,7 +34,7 @@ let User = require('../db/schema.js').User
           }
       })
     })
-    .delete('/users/:_id', function(req, res){
+    .delete('/items/:_id', function(req, res){
       User.remove({ _id: req.params._id}, (err) => {
         if(err) return res.json(err)
         res.json({
@@ -47,4 +47,4 @@ let User = require('../db/schema.js').User
     // Routes for a Model(resource) should have this structure
 
 
-module.exports = apiRouter
+module.exports = itemRouter
