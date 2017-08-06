@@ -6,7 +6,7 @@ let User = require('../db/userSchema.js')
 
 
   userRouter
-    .get('/users', function(req, res){
+    .get('/', function(req, res){
       User.find(req.query , "-password", function(err, results){
         if(err) return res.json(err)
         res.json(results)
@@ -14,13 +14,13 @@ let User = require('../db/userSchema.js')
     })
 
   userRouter
-    .get('/users/:_id', function(req, res){
+    .get('/:_id', function(req, res){
       User.findById(req.params._id, "-password", function(err, record){
         if(err || !record ) return res.json(err)
         res.json(record)
       })
     })
-    .put('/users/:_id', function(req, res){
+    .put('/:_id', function(req, res){
 
       User.findByIdAndUpdate(req.params._id, req.body, function(err, record){
           if (err) {
@@ -34,7 +34,7 @@ let User = require('../db/userSchema.js')
           }
       })
     })
-    .delete('/users/:_id', function(req, res){
+    .delete('/:_id', function(req, res){
       User.remove({ _id: req.params._id}, (err) => {
         if(err) return res.json(err)
         res.json({
