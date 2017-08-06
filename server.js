@@ -65,7 +65,7 @@ app.use(function(req, res, next) {
 });
 
 app.use( '/auth', authRouter )
-app.use( '/item', itemRouter )
+app.use( '/items', itemRouter )
 app.use( '/user', userRouter )
 
 app.use(appMiddleWare.errorHandler);
