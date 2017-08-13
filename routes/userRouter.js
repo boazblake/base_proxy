@@ -20,8 +20,8 @@ let User = require('../db/userSchema.js')
         res.json(record)
       })
     })
-    .put('/:_id', function(req, res){
 
+    .put('/:_id', function(req, res){
       User.findByIdAndUpdate(req.params._id, req.body, function(err, record){
           if (err) {
             res.status(500).send(err)
@@ -34,6 +34,7 @@ let User = require('../db/userSchema.js')
           }
       })
     })
+    
     .delete('/:_id', function(req, res){
       User.remove({ _id: req.params._id}, (err) => {
         if(err) return res.json(err)

@@ -4,10 +4,8 @@ let helpers = require('../config/helpers.js')
 
 let Item = require('../db/itemSchema.js')
 
-
   itemRouter
     .get('/', function(req, res){
-      console.log(req)
       Item.find(req.query , "-password", function(err, results){
         if(err) return res.json(err)
         res.json(results)
@@ -42,6 +40,7 @@ let Item = require('../db/itemSchema.js')
       })
     })
 
+
   itemRouter
     .put('/:_id', function(req, res){
       Item.findByIdAndUpdate(req.params._id, req.body, function(err, record){
@@ -57,8 +56,8 @@ let Item = require('../db/itemSchema.js')
       })
     })
 
+
     .delete('/:_id', function(req, res){
-      console.log(req.params)
       Item.remove({ _id: req.params._id}, (err) => {
         if(err) return res.json(err)
         res.json({
@@ -67,8 +66,5 @@ let Item = require('../db/itemSchema.js')
         })
       })
     })
-
-    // Routes for a Model(resource) should have this structure
-
 
 module.exports = itemRouter
