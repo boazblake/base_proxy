@@ -16,12 +16,16 @@ const appAuthentication = require('./config/auth.js')
 const connectToDB = require('./config/db-setup.js').connectToDB
 
 // Import Routers
-let authRouter = require('./routes/authRouter.js')
-let userRouter = require('./routes/userRouter.js')
-let itemRouter = require('./routes/itemRouter.js')
+const attendanceRouter = require('./routes/v1/attendance.js')
+const authRouter = require('./routes/v1/auth.js')
+const eventRouter = require('./routes/v1/event.js')
+const eventDetailRouter = require('./routes/v1/eventDetail.js')
+const itemRouter = require('./routes/v1/item.js')
+const userDetailRouter = require('./routes/v1/userDetail.js')
+const userRouter = require('./routes/v1/user.js')
 
 // Load DB User Model (for appAuthentication configuration)
-let User = require('./db/userSchema.js')
+const User = require('./db/v1/userSchema.js')
 
 
 // =========

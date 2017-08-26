@@ -1,13 +1,11 @@
 let Router = require('express').Router;
 let passport = require ('passport')
-let User = require('../db/userSchema.js')
-let checkAuth = require('../config/middleware.js').checkAuth
+let User = require('../../db/v1/userSchema.js')
+let checkAuth = require('../../config/middleware.js').checkAuth
 
+const auth = Router()
 
-const authRouter = Router()
-
-
-authRouter
+auth
   .post('/register', function(req, res){
     // passport appends json-data to request.body
     console.log(req.body)
@@ -29,7 +27,7 @@ authRouter
     })
   })
 
-authRouter
+auth
   .get('/current', function (req, res) {
     if (req.user) res.json({user: req.user});
     else res.json({user: null})
@@ -76,4 +74,4 @@ authRouter
   })
 
 
-module.exports = authRouter
+module.exports = auth
