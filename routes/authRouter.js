@@ -37,12 +37,14 @@ authRouter
   .post('/login', function(req,res,next){
     passport.authenticate('local', function(err,user,info) {
       if (err || !user) {
+        console.log(err)
         res.status(400).send('incorrect email/password combination')
         return
       }
       else {
         req.login(user,function(err) {
           if (err) {
+            console.log(err)
             res.status(400).send(err)
             return
           }
