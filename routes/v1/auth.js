@@ -1,6 +1,6 @@
 let Router = require('express').Router;
 let passport = require ('passport')
-let User = require('../../db/v1/userSchema.js')
+let User = require('../../db/v1/user.js')
 let checkAuth = require('../../config/middleware.js').checkAuth
 
 const auth = Router()

@@ -1,4 +1,4 @@
-const PROJECT_NAME = 'shinDB'
+const PROJECT_NAME = 'TenantFit'
 
 // x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 
@@ -16,16 +16,13 @@ const appAuthentication = require('./config/auth.js')
 const connectToDB = require('./config/db-setup.js').connectToDB
 
 // Import Routers
-const attendanceRouter = require('./routes/v1/attendance.js')
 const authRouter = require('./routes/v1/auth.js')
-const eventRouter = require('./routes/v1/event.js')
-const eventDetailRouter = require('./routes/v1/eventDetail.js')
-const itemRouter = require('./routes/v1/item.js')
-const userDetailRouter = require('./routes/v1/userDetail.js')
-const userRouter = require('./routes/v1/user.js')
+const userRouter = require('./routes/v1/users.js')
+const tenantsRouter = require('./routes/v1/tenants.js')
+const storesRouter = require('./routes/v1/stores.js')
 
 // Load DB User Model (for appAuthentication configuration)
-const User = require('./db/v1/userSchema.js')
+const User = require('./db/v1/user.js')
 
 
 // =========
@@ -64,13 +61,14 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin",[ "http://localhost:9000"]);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", ["DELETE", "UPDATE", "GET", "PUT"]);
+  res.header("Access-Control-Allow-Methods", ["DELETE", "UPDATE", "GET", "PUT", "POST"]);
   next();
 });
 
 app.use( '/auth', authRouter )
-app.use( '/items', itemRouter )
 app.use( '/user', userRouter )
+app.use( '/tenants', tenantsRouter )
+app.use( '/stores', storesRouter )
 
 app.use(appMiddleWare.errorHandler);
 
