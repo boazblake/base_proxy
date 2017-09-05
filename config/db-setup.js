@@ -19,7 +19,7 @@ module.exports = {
               else console.log("\n\n===== Connected to: " + dbLocation +  "=====\n\n")
         })
       } else {
-        mongoose.connect(process.env.MONGODB_URI ,
+        mongoose.connect(dbLocation ,
           { socketTimeoutMS: 0
           , keepAlive: true
           , reconnectTries: 30
