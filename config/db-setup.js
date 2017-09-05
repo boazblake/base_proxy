@@ -18,7 +18,7 @@ module.exports = {
           }
         })
       } else {
-        mongoose.connect(process.env.MONGODB_URI , (err, db)=>{
+        mongoose.connect(dbLocation , (err, db)=>{
           if (err) {
             console.log(err)
           }
@@ -30,3 +30,5 @@ module.exports = {
       console.log('finished setup')
     }
 }
+
+//not sure where this is?? process.env.MONGODB_URI
