@@ -73,6 +73,20 @@ store
     })
   })
 
+//GET BY USER ID
+store
+  .get('/userId/:id', function(req, res) {
+    Store.find({userId: req.params._id}, function(err, record) {
+      if(err || !record ) {
+        console.log('ERROR WITH GETTING USERS STORES', record)
+        return res.json(err)
+      }
+      console.log('USERS STOREs REQUESTED', record)
+      res.json(record)
+      res.end()
+    })
+  })
+
 store
   .put('/:_id', function(req, res){
     Store.findByIdAndUpdate(req.params._id, req.body, function(err, record){
