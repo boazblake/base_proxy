@@ -58,8 +58,8 @@ app.use( appMiddleWare.parseQuery )
 // ROUTERS
 // =========
 app.use(function(req, res, next) {
-  if (req.header.Host === "https://tenant-fit.herokuapp.com") {
-    req.header.Host = "http://localhost:9000"
+  if (req.header.Origin === "https://tenant-fit.herokuapp.com") {
+    req.header.Origin = "http://localhost:9000"
   }
 
   res.header("Access-Control-Allow-Origin",["http://localhost:9000"]);
